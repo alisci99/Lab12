@@ -12,7 +12,12 @@ class Controller:
         self._listCountry = []
 
     def fillDD(self):
-        pass
+        years, countries= self._model.fillDD()
+        for anno in years:
+            self._view.ddyear.options.append(ft.Text(f"{anno}"))
+        for c in countries :
+            self._view.ddcountry.options.append(ft.Text(f"{c}"))
+        self._view.update_page()
 
 
     def handle_graph(self, e):
