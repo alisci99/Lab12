@@ -14,14 +14,21 @@ class Controller:
     def fillDD(self):
         years, countries= self._model.fillDD()
         for anno in years:
-            self._view.ddyear.options.append(ft.Text(f"{anno}"))
+            self._view.ddyear.options = [ft.dropdown.Option(str(anno)) for anno in years]
         for c in countries :
-            self._view.ddcountry.options.append(ft.Text(f"{c}"))
+            self._view.ddcountry.options = [ft.dropdown.Option(str(c)) for c in countries]
         self._view.update_page()
 
 
     def handle_graph(self, e):
-        pass
+        country = self._view.ddcountry.value
+        year = self._view.ddyear.value
+        self._model.crea_grafo(year, country)
+        self._view.txt_result.controls.clear()
+        self._view.txt_result.controls.append(ft.Text("grafo creato con succeso!"))
+        nNodi,nArchi = self._model.get_graph_details()
+        self._view.txt_result.controls.append(ft.Text(f"numero di nodi : {nNodi}  , numero di archi {nArchi}"))
+        self._view.update_page()
 
 
 
