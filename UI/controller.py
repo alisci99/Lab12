@@ -12,11 +12,15 @@ class Controller:
         self._listCountry = []
 
     def fillDD(self):
-        years, countries= self._model.fillDD()
-        for anno in years:
-            self._view.ddyear.options = [ft.dropdown.Option(str(anno)) for anno in years]
-        for c in countries :
-            self._view.ddcountry.options = [ft.dropdown.Option(str(c)) for c in countries]
+        years, countries = self._model.fillDD()
+        self._view.ddyear.options = [
+            ft.dropdown.Option(key=str(anno), text=str(anno)) for anno in years
+        ]
+        self._view.ddcountry.options = [
+            ft.dropdown.Option(key=c, text=c) for c in countries
+        ]
+        self._view.ddyear.value = None
+        self._view.ddcountry.value = None
         self._view.update_page()
 
 
@@ -44,4 +48,10 @@ class Controller:
 
 
     def handle_path(self, e):
-        pass
+        N = self._view.txtN.value
+        pesoM, cammino = self._model.get_cammino(N)
+        self._view.txtOut3.controls.clear()
+        self._view.txtOut3.controls.append(ft.Text(f"peso massimo {pesoM}"))
+        for c in cammino :
+            self._view.txtOut3.controls.append(ft.Text(f"{c}"))
+        self._view.update_page()
