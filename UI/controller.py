@@ -49,6 +49,10 @@ class Controller:
 
     def handle_path(self, e):
         N = self._view.txtN.value
+        if N <2 :
+            self._view.txtOut3.controls.clear()
+            self._view.txtOut3.controls.append(ft.Text("lunghezza minima 2"))
+            return
         pesoM, cammino = self._model.get_cammino(N)
         self._view.txtOut3.controls.clear()
         self._view.txtOut3.controls.append(ft.Text(f"peso massimo {pesoM}"))

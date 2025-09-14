@@ -53,8 +53,8 @@ class Model:
         return self.volumes
 
     def get_cammino(self, N):
-        pesoM=0
-        cammino=[]
+        self.pesoM=0
+        self.cammino=[]
 
         parziale=[]
 
