@@ -16,3 +16,6 @@ class Retailers:
 
     def __eq__(self, other):
         return self.Retailer_code== other.Retailer_code
+
+    def __repr__(self):
+        return self.__str__()

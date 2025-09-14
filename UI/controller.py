@@ -33,7 +33,14 @@ class Controller:
 
 
     def handle_volume(self, e):
-        pass
+        volume = self._model.get_volume()  # correggi nome variabile
+        self._view.txtOut2.controls.clear()  # pulisci l’area corretta
+        volume2 = sorted(volume.items(), key=lambda item: item[1], reverse=True)
+        for nodo, vol in volume2:  # ottieni nodo e volume
+            self._view.txtOut2.controls.append(
+                ft.Text(f"nodo {nodo}  volume totale {vol}")
+            )
+        self._view.update_page()
 
 
     def handle_path(self, e):
